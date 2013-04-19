@@ -4,6 +4,9 @@ class TextsController < ApplicationController
     
   end
 
+  def new 
+  end
+
   def create
     number_to_send_to = params[:number_to_send_to]
 
