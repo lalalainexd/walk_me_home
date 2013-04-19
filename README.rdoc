@@ -1,0 +1,7 @@
+This is an open source application that is aimed to help address violence against women and other individuals as they are in transit from one area to another. In particular, this application was inspired by the number of women who experience violence when they are walking on streets after dark, often when walking home. 
+
+
+The application allows individuals to register and save an emergency contact. An individual can text the application to notify that a "time of transition" has begun, and identify a predetermined time that they expect to arrive at their destination. The application will send a prompt to the individual at the determined time, which will ask if they have arrived at the destination. If the user does not respond within a given time, the application will re-send the confirmation five times. If the user continues to fail to confirm their arrival, the application will send an alert to the user's emergency contact, and will continue to send the alert until the contact confirms receipt of the message.
+
+
+Developed by students in gSchool, this application is open-source. Please send to a message to Chelsea Komlo (@chelseakomlo) if you have any questions about the project, would like to offer feedback, or would like to contribute. 
