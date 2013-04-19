@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe "it can register a user" do 
+describe "it can register a user" do
 
   context "when someone registers for the application" do 
 
