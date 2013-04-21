@@ -5,3 +5,5 @@ The application allows individuals to register and save an emergency contact. An
 
 
 Developed by students in gSchool, this application is open-source. Please send to a message to Chelsea Komlo (@chelseakomlo) if you have any questions about the project, would like to offer feedback, or would like to contribute. 
+
+user personas[https://docs.google.com/presentation/d/1AsK78wrE7dEO8Bw4SIuSukTLB1Z5z6reCCq4beCA6XE/edit#slide=id.p]
