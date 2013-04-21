@@ -4,6 +4,10 @@ gem 'rails', '3.2.13'
 gem 'sqlite3'
 gem 'twilio-ruby'
 gem 'haml-rails'
+gem 'bootstrap-sass'
+gem 'simple_form'
+gem 'sorcery'
+gem 'redcarpet'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

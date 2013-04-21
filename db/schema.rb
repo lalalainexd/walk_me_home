@@ -11,10 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419154840) do
+ActiveRecord::Schema.define(:version => 20130419165242) do
 
   create_table "emergency_contacts", :force => true do |t|
     t.integer  "user_id"
+    t.string   "full_name"
     t.integer  "phone_number"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
@@ -23,10 +24,13 @@ ActiveRecord::Schema.define(:version => 20130419154840) do
   add_index "emergency_contacts", ["user_id"], :name => "index_emergency_contacts_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.integer  "phone_number"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "full_name",        :null => false
+    t.integer  "phone_number",     :null => false
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
 end

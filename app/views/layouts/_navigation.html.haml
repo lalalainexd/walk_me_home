@@ -1,0 +1,12 @@
+= link_to 'Walk Me Home', root_path, :class => 'brand'
+%ul.nav
+  - if current_user
+    %li
+      = link_to('Logout', logout_path)
+    %li
+      = link_to('Account', user_path(current_user.id))
+  - else
+    %li
+      = link_to('Login', login_path)
+    %li
+      = link_to('Sign up', signup_path)

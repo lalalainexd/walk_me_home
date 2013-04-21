@@ -1,7 +1,5 @@
-%h1 Editing emergency_contact
+%h1 Edit Emergency Contact
 
 = render 'form'
 
-= link_to 'Show', @emergency_contact
-\|
-= link_to 'Back', emergency_contacts_path
+= link_to 'Cancel', user_path(current_user.id)
