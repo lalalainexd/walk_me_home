@@ -9,9 +9,15 @@ class TextsController < ApplicationController
   end
 
   def create
-    number_to_send_to = params[:phone_number]
 
-    Text.send_text_message(number_to_send_to)
+    @test = Text.create((params[:text][:phone_number]).to_s)
+
+    Text.send_text_message(@text.phone_number)
+
+    redirect_to text_path()
+  end
+
+  def show
 
   end
 end 
