@@ -1,3 +1,5 @@
+{<img src="https://travis-ci.org/chelseakomlo/walk_me_home.png?branch=master" alt="Build Status" />}[https://travis-ci.org/chelseakomlo/walk_me_home]
+
 This is an open source application that is aimed to help address violence against women and other individuals as they are in transit from one area to another. In particular, this application was inspired by the number of women who experience violence when they are walking on streets after dark, often when walking home. 
 
 
