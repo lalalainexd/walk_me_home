@@ -1,5 +1,5 @@
 class CreateTripTable < ActiveRecord::Migration
-  def create
+  def change
     create_table :trips do |t|
       t.timestamps
       t.references :user

@@ -8,5 +8,6 @@ WalkMeHome::Application.routes.draw do
   resources :users
   resources :emergency_contacts
   resources :sessions, only: [:new, :create, :destroy]
-
+  resources :texts
+  resources :trips, only: [:create, :show]
 end

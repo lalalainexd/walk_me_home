@@ -1,4 +1,7 @@
 class Trip < ActiveRecord::Base
   belongs_to :user
-  validates_presence_of :expected_end_at
+
+  def self.create_trip_with_duration user_id, duration
+
+  end
 end
