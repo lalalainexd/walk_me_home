@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Trip do
   describe "create_trip_with_duration" do
 
-
     context "with valid params" do
       let(:user) {new_user}
       let(:trip) {Trip.create_trip_with_duration(user.id, 2000)}
@@ -34,7 +33,6 @@ describe Trip do
 
       context "with invalid duration" do
 
-
         context "of zero" do
           let(:trip) { Trip.create_trip_with_duration(new_user.id, 0) }
 
@@ -58,6 +56,29 @@ describe Trip do
             expect(trip).to have(1).error_on(:duration)
           end
         end
+      end
+    end
+  end
+
+  describe "time_up?" do
+
+    context "time is up" do
+      it "returns true" do
+        trip = Trip.new
+        trip.expected_end_at = Time.now - 5000
+
+        expect(trip).to be_time_up
+
+      end
+    end
+
+    context "time is not up" do
+      it "returns true" do
+        trip = Trip.new
+        trip.expected_end_at = Time.now + 5000
+
+        expect(trip).to_not be_time_up
+
       end
     end
   end

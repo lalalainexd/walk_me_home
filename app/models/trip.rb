@@ -8,6 +8,8 @@ class Trip < ActiveRecord::Base
   #validate :expected_end_is_after_created_time
   after_create :calculate_expected_end_at
 
+  scope :filter_ended_trips, where("expected_end_at > ? ", Time.now).order(:expected_end_at)
+
   def self.create_trip_with_duration user_id, duration
     user = User.find_by_id(user_id)
 
@@ -17,6 +19,10 @@ class Trip < ActiveRecord::Base
       trip.save
     end
 
+  end
+
+  def time_up?
+    Time.now >= expected_end_at
   end
 
   private
