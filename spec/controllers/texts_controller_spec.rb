@@ -6,13 +6,7 @@ describe TextsController do
 
   describe "it sends a text message" do 
 
-    it "takes in a phone number" do 
-      post :new, {phone_number: phone_number}
-      expect(assigns(:phone_number)).to eq phone_number
-    end
-
-    it "saves that number" do 
-      pending
+    xit "saves that number" do 
       post :create, {phone_number: phone_number}
       expect(Text.count).to eq 1
     end
