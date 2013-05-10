@@ -6,7 +6,7 @@ class Text < ActiveRecord::Base
 
     twilio_sid = 'ACa951155520555db68530c17d8e49fdb8'  
     twilio_token = 'cbe3c65f7c52f35d53cfbf5ed86d9d1a'
-    twilio_phone_number = '9706394488'
+    twilio_phone_number = '19706394488'
 
     @twilio_client = Twilio::REST::Client.new(twilio_sid, twilio_token)
 

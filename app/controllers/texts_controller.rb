@@ -16,7 +16,7 @@ class TextsController < ApplicationController
 
     Text.send_text_message(@text.phone_number)
 
-    redirect_to text_path()
+    redirect_to root_path
   end
 
   def show
