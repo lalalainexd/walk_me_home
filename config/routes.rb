@@ -1,4 +1,8 @@
+require 'resque/server'
+
 WalkMeHome::Application.routes.draw do
+  mount Resque::Server.new, at: "/resque"
+
   get "sessions/new"
 
   root to: 'texts#index'

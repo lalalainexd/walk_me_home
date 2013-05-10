@@ -14,11 +14,8 @@ describe TripsController do
 
     context "there are no problems beginning a trip" do
 
-      before do
-        trip.should_receive(:begin).and_return(true)
-      end
-
       it "redirects to the trip show page" do
+        trip.should_receive(:start).and_return(true)
         post :create, {user_id: user_id, duration: duration}
         expect(response).to redirect_to(trip)
       end
