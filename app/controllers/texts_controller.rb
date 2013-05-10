@@ -10,7 +10,9 @@ class TextsController < ApplicationController
 
   def create
 
-    @test = Text.create((params[:text][:phone_number]).to_s)
+    number = params[:text][:phone_number]
+
+    @text = Text.create(phone_number: number)
 
     Text.send_text_message(@text.phone_number)
 
