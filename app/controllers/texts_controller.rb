@@ -4,6 +4,10 @@ class TextsController < ApplicationController
     
   end
 
+  def new 
+    @text = Text.new
+  end
+
   def create
 
     @test = Text.create((params[:text][:phone_number]).to_s)
