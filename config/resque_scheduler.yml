@@ -1,0 +1,5 @@
+every_second:
+  every: ["1s"]
+  class: TrekManager
+  queue: manage_trek_queue
+  description: Finds treks that should be over every 5 sec
