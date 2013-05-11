@@ -55,4 +55,25 @@ describe Message do
       end
     end
   end
+
+  describe ".home_safely?" do 
+
+    context "given a message affirms a user is home safe" do 
+
+      let(:message) { Message.construct("Yes") }
+
+      it "returns true" do 
+        expect(message.home_safely?).to be_true
+      end
+    end
+
+    context "given a message does not affirm a user is home safe" do 
+      
+      let(:message){ Message.construct("Lots of words words words") }
+
+      it "returns false" do 
+        expect(message.home_safely?).to be_false
+      end
+    end
+  end
 end 

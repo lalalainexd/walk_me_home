@@ -22,6 +22,10 @@ class Message
     return true if words.include?("Cancel")
   end
 
+  def home_safely?
+    return true if words.include?("Yes")
+  end
+
   private
 
   def words
