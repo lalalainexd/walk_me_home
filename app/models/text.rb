@@ -3,7 +3,9 @@ class Text < ActiveRecord::Base
   def self.respond_to(phone_number, body)
     user = User.find_by_phone_number(phone_number)
 
-    return send_text(phone_number, register) if user.nil?
+    if user.nil?
+      send_text(phone_number, register) 
+    end
 
     #if the body includes the phrase "start trip"
       #start the trip
@@ -18,11 +20,11 @@ class Text < ActiveRecord::Base
 
   private
 
-  def register
+  def self.register
     "Please register before using this application"
   end
 
-  def send_text(phone_number, body)
+  def self.send_text(phone_number, body)
     client.account.sms.messages.create(
       :from => "+#{twilio_phone_number}", 
       :to => phone_number,

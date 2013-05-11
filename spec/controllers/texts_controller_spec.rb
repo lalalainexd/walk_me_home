@@ -11,9 +11,14 @@ describe TextsController do
 
     context "a user is not registered" do 
 
+      before do 
+        Text.stub(:send_text).and_return(true)
+      end
+
       it "tells the user to register before starting a trip" do 
         post :input, starting_trip
-        (Text).should_receive(:send_text).with("Please register before using this application")
+        user = User.find_by_phone_number("10000000")
+        expect(user).to be_nil 
       end
 
       context "a user is registered" do 
