@@ -1,10 +1,13 @@
 class Text < ActiveRecord::Base
 
-  def self.respond_to(phone_number, body)
-    user = User.find_by_phone_number(phone_number)
+  def self.unregistered_user(phone_number)
+    send_text(phone_number, register)
+  end
 
-    if user.nil?
-      send_text(phone_number, register) 
+  def self.respond_to(phone_number, body)
+
+    if starting_trip?(body)
+      TextsController.start_trip(user.id, body)
     end
 
     #if the body includes the phrase "start trip"

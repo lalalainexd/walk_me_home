@@ -3,7 +3,7 @@ require 'spec_helper'
 describe TextsController do
 
   let(:starting_trip){ {
-                        :From => "10000000",
+                        :From => "19702708047",
                         :Body => "Starting trip of 20 minutes"
                       } }
 
@@ -11,9 +11,9 @@ describe TextsController do
 
     context "a user is not registered" do 
 
-      before do 
-        Text.stub(:send_text).and_return(true)
-      end
+      # before do 
+      #   Text.stub(:send_text).and_return(true)
+      # end
 
       it "tells the user to register before starting a trip" do 
         post :input, starting_trip
