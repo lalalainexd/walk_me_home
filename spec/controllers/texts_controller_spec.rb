@@ -11,9 +11,9 @@ describe TextsController do
 
     context "a user is not registered" do 
 
-      # before do 
-      #   Text.stub(:send_text).and_return(true)
-      # end
+      before do 
+        Text.stub(:send_text).and_return(true)
+      end
 
       it "tells the user to register before starting a trip" do 
         post :input, starting_trip

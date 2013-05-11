@@ -6,8 +6,13 @@ class TextsController < ApplicationController
     #post to start the trip
 
     phone_number = params[:From]
+    message = params[:Body]
 
     return Text.unregistered_user(phone_number) if user(phone_number).nil?
+
+    if message.starting_trip?
+      post 
+    end
 
     # Text.respond_to(params[:From], params[:Body] )
   end
