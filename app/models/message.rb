@@ -11,7 +11,7 @@ class Message
   end
 
   def starting_trip?
-    return true if words.include?("Start")
+    words.include?("Start")
   end
 
   def duration
@@ -19,11 +19,15 @@ class Message
   end
 
   def cancel_trip?
-    return true if words.include?("Cancel")
+    words.include?("Cancel")
   end
 
   def home_safely?
-    return true if words.include?("Yes")
+    words.include?("Yes")
+  end
+
+  def extend_trip?
+    words.include?("Extend")
   end
 
   private

@@ -76,4 +76,25 @@ describe Message do
       end
     end
   end
+
+  describe ".extend_trip?" do 
+
+    context "given a message affirms to extend a trip" do
+
+      let(:message){ Message.construct("Extend 10") }
+
+      it "returns true" do 
+        expect(message.extend_trip?).to be_true
+      end 
+    end
+
+    context "given a message does not affirm to extend a trip" do 
+
+      let(:message){ Message.construct("Lots of words words words") }
+
+      it "returns false" do 
+        expect(message.extend_trip?).to be_false
+      end
+    end
+  end
 end 

@@ -1,9 +1,7 @@
 class TextsController < ApplicationController
 
+  # Takes in User input and passes it along to the necessary actions
   def input
-    #take in the text message
-    #create or find the user
-    #post to start the trip
 
     phone_number = params[:From]
     message = params[:Body]
@@ -22,6 +20,12 @@ class TextsController < ApplicationController
     end
   end
 
+  # Takes in Worker Input- expecing a user id and a parameter
+  def output
+    Text.respond_to(user.phone_number, confirmation_message)
+    #send the user the message given on what the worker is responding to 
+  end
+
   private 
 
   def user(phone_number)
@@ -30,5 +34,9 @@ class TextsController < ApplicationController
 
   def retry_message
     "I'm sorry, your message was unclear. Please try again."
+  end
+
+  def confirmation_message
+    "Your trip is over. Please respond 'Yes' if you are home safely, or 'Extend' + number of minutes to extend your trip."
   end
 end 
