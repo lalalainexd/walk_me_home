@@ -6,22 +6,32 @@ describe Message do
 
     context "given a message says to start a trip" do 
 
+      let(:message){ Message.construct("Start trip of 20 minutes") }
+
       it "returns true" do 
-        message = Message.construct("Start trip of 20 minutes")
         expect(message.starting_trip?).to be_true
       end 
     end
 
     context "given a message does not say to start a trip" do 
 
+      let(:message){ Message.construct("Lots of words words words") }
+
       it "returns false" do 
-        message = Message.construct("Lots of words words words")
         expect(message.starting_trip?).to be_false
       end 
     end 
   end
 
+  describe ".duration" do 
 
+    context "given a message has a trip duration" do 
 
+      let(:message){ Message.construct("Start trip of 20 minutes") }
 
+      it "returns the trip duration" do 
+        expect(message.duration).to eq "20"
+      end
+    end
+  end
 end 

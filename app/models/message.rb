@@ -11,12 +11,15 @@ class Message
   end
 
   def starting_trip?
-    words = self.content.split(" ")
     return true if words.include?("Start")
   end
 
   def duration
-    #find the number in self, return that
+    self.content.scan(/\d/).join("")
+  end
+
+  def words
+    self.content.split(" ")
   end
 
 
