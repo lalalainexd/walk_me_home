@@ -4,39 +4,31 @@ class TextsController < ApplicationController
   def input
 
     phone_number = params[:From]
-    message = params[:Body]
+    message = Message.construct(params[:Body])
 
-    return Text.unregistered_user(phone_number) if user(phone_number).nil?
-
-    case trip
-    when message.starting_trip?
+    return Text.register(phone_number) if user(phone_number).nil?
+    
+    case 
+    when message.starting_trip? == true
+      Text.start(phone_number)
       # post (message.duration, user.id) to create a trip
-    when message.cancel_trip?
+    when message.cancel_trip? == true
+      Text.cancel(phone_number)
       # post to cancel the trip, include user.id
-    when message.home_safely?
+    when message.home_safely? == true
+      Text.final(phone_number)
       #post to home safely, user.id
+    when message.extend_trip? == true
+      Text.extend_trip(phone_number, message.duration )
+      #post to extend trip (message.duration, user.id) to extend the trip
     else
-      # Text.respond_to(params[:From], retry_message )
+      Text.unknown(phone_number)
     end
-  end
-
-  # Takes in Worker Input- expecing a user id and a parameter
-  def output
-    Text.respond_to(user.phone_number, confirmation_message)
-    #send the user the message given on what the worker is responding to 
   end
 
   private 
 
   def user(phone_number)
     User.find_by_phone_number(phone_number)
-  end
-
-  def retry_message
-    "I'm sorry, your message was unclear. Please try again."
-  end
-
-  def confirmation_message
-    "Your trip is over. Please respond 'Yes' if you are home safely, or 'Extend' + number of minutes to extend your trip."
   end
 end 
