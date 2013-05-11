@@ -4,9 +4,9 @@ class Text < ActiveRecord::Base
 
   def self.send_text_message(number_to_send_to)
 
-    twilio_sid = 'ACa951155520555db68530c17d8e49fdb8'  
-    twilio_token = 'cbe3c65f7c52f35d53cfbf5ed86d9d1a'
-    twilio_phone_number = '9706394488'
+    twilio_sid = ENV["TWILIO_SID"] 
+    twilio_token = ENV["TWILIO_TOKEN"]
+    twilio_phone_number = ENV["TWILIO_PHONE_NUMBER"]
 
     @twilio_client = Twilio::REST::Client.new(twilio_sid, twilio_token)
 
