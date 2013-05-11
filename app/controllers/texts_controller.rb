@@ -20,6 +20,6 @@ class TextsController < ApplicationController
   end
 
   def input
-    Text.respond_to('9702708047', params[:Body] )
+    Text.respond_to(params[:From], params[:Body] )
   end
 end 
