@@ -7,12 +7,16 @@ class Text < ActiveRecord::Base
     twilio_client.account.sms.messages.create(
       :from => "+#{twilio_phone_number}", 
       :to => "+1#{number_to_send_to}",
-      :body => "Yo yo yo! Sending a message to you at #{number_to_send_to}")
+      :body => body )
   end 
 
-  # def self.respond_to(phone_number)
+  def self.respond_to(number_to_send_to, body)
 
-  # end
+    twilio_client.account.sms.messages.create(
+      :from => "+#{twilio_phone_number}", 
+      :to => "+1#{number_to_send_to}",
+      :body => body )
+  end 
 
   private
 

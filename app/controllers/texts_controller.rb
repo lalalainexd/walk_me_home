@@ -20,10 +20,6 @@ class TextsController < ApplicationController
   end
 
   def input
-    # @text = Text.create(phone_number: '9702708047')
-
-    # Text.respond_to('9702708047')
-
-    Text.send_text_message('9702708047')
+    Text.respond_to('9702708047', params[:Body] )
   end
 end 
