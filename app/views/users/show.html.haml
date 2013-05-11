@@ -1,0 +1,25 @@
+.text-center
+  %h1 Account Details
+.row
+  .span6
+    %h5= "Full Name: #{@user.full_name}"
+    %h5= "Email Address: #{@user.email}"
+    %h5= "Cell Phone Number: #{@user.phone_number}"
+
+    = link_to 'Edit Details', edit_user_path(@user)
+
+  .span6
+    -if @user.emergency_contacts.empty?
+      %h5= 'You have not added any emergency contacts!'
+      = link_to 'Add Emergency Contacts', new_emergency_contact_path
+    -else
+      %table
+        %th Full Name:
+        %th Cell Phone Number:
+        %th
+        %th
+      - @user.emergency_contacts.each do |contact|
+        %td= contact.full_name
+        %td= contact.phone_number
+        %td= link_to 'Edit', edit_emergency_contact_path(contact.id)
+        %td= link_to 'Remove', emergency_contact_path(contact.id), method: 'DELETE'

@@ -1,12 +1,11 @@
 require 'spec_helper'
 
-describe TextsController do 
+describe TextsController do
 
   let(:starting_trip){ {
                         :From => "10000000",
                         :Body => "Starting trip of 20 minutes"
                       } }
-
 
   describe "receiving a text message" do 
 
