@@ -1,25 +1,9 @@
 class TextsController < ApplicationController
 
-  def index
-    
-  end
-
-  def new 
-    @text = Text.new
-  end
-
-  def create
-
-    number = params[:text][:phone_number]
-
-    @text = Text.create(phone_number: number)
-
-    Text.send_text_message(@text.phone_number)
-
-    redirect_to root_path
-  end
-
   def input
+    #take in the text message
+    #create or find the user
+    #post to start the trip
     Text.respond_to(params[:From], params[:Body] )
   end
 end 

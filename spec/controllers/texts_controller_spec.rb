@@ -2,31 +2,32 @@ require 'spec_helper'
 
 describe TextsController do 
 
-  let(:phone_number){}
+  let(:starting_trip){ {
+                        :From => "10000000",
+                        :Body => "Starting trip of 20 minutes"
+                      } }
 
-  describe "it sends a text message" do 
-
-    xit "saves that number" do 
-      post :create, {phone_number: phone_number}
-      expect(Text.count).to eq 1
-    end
-  end
 
   describe "receiving a text message" do 
 
-    it "receives the message" do 
-      post :input
-      expect(assigns(:response)).to_not be_nil
-    end
-  end
+    context "a user is not registered" do 
 
-
-  describe "it sends and receives a default text message" do 
-
-    context "when a user sends a message to the application" do 
-
-      xit "will send back a general response" do 
+      it "tells the user to register before starting a trip" do 
+        post :input, starting_trip
+        (Text).should_receive(:send_text).with("Please register before using this application")
       end
+
+      context "a user is registered" do 
+
+        it "regiseres the user for the trip" do 
+        end
+      end
+    end
+
+    context "a user cancelles a trip" do 
+    end
+
+    context "a user ends a trip when prompted" do 
     end
   end
 end

@@ -1,26 +1,35 @@
 class Text < ActiveRecord::Base
 
-  attr_accessible :phone_number
+  def self.respond_to(phone_number, body)
+    user = User.find_by_phone_number(phone_number)
 
-  def self.send_text_message(number_to_send_to)
+    return send_text(phone_number, register) if user.nil?
 
-    twilio_client.account.sms.messages.create(
-      :from => "+#{twilio_phone_number}", 
-      :to => "+1#{number_to_send_to}",
-      :body => body )
-  end 
+    #if the body includes the phrase "start trip"
+      #start the trip
+    #else
+      #send information about specific commands needed to start the trip
+    #end
 
-  def self.respond_to(number_to_send_to, body)
+    #cancel a trip
+    #affirm they have arrived
 
-    twilio_client.account.sms.messages.create(
-      :from => "+#{twilio_phone_number}", 
-      :to => number_to_send_to,
-      :body => body )
   end 
 
   private
 
-  def self.twilio_client
+  def register
+    "Please register before using this application"
+  end
+
+  def send_text(phone_number, body)
+    client.account.sms.messages.create(
+      :from => "+#{twilio_phone_number}", 
+      :to => phone_number,
+      :body => body )
+  end
+
+  def self.client
     Twilio::REST::Client.new(twilio_sid, twilio_token)
   end
 
