@@ -15,7 +15,7 @@ describe TextsController do
 
 
   before do 
-    Text.stub(:message).and_return(true)
+    Text.any_instance.stub(:message).and_return(true)
   end
 
   describe "receiving a text message" do 
@@ -31,41 +31,44 @@ describe TextsController do
 
     context "a user is registered" do 
 
-      it "starts a trip for that user" do 
-        (Text).should_receive(:start)
-        post :input, { :From => user.phone_number, :Body => "Start trip of 20 minutes"}
+        context "a user texts to start a trip" do 
+
+        it "starts a trip for that user" do 
+          (Text).any_instance.should_receive(:start)
+          post :input, { :From => user.phone_number, :Body => "Start trip of 20 minutes"}
+        end
       end
-    end
 
-    context "a user cancelles a trip" do 
+      context "a user cancelles a trip" do 
 
-      it "cancelles the user's current trip" do 
-        (Text).should_receive(:cancel)
-        post :input, { :From => user.phone_number, :Body => "Cancel trip"}
+        it "cancelles the user's current trip" do 
+          (Text).any_instance.should_receive(:cancel)
+          post :input, { :From => user.phone_number, :Body => "Cancel trip"}
+        end
       end
-    end
 
-    context "a user extends a trip" do 
+      context "a user extends a trip" do 
 
-      it "extends that trip" do 
-        (Text).should_receive(:extend_trip)
-        post :input, { :From => user.phone_number, :Body => "Extend 10"}
+        it "extends that trip" do 
+          (Text).any_instance.should_receive(:extend_trip)
+          post :input, { :From => user.phone_number, :Body => "Extend 10"}
+        end
       end
-    end
 
-    context "a user ends a trip when prompted" do 
+      context "a user ends a trip when prompted" do 
 
-      it "ends the trip" do 
-        (Text).should_receive(:final)
-        post :input, { :From => user.phone_number, :Body => "Yes"}
+        it "ends the trip" do 
+          (Text).any_instance.should_receive(:final)
+          post :input, { :From => user.phone_number, :Body => "Yes"}
+        end
       end
-    end
 
-    context "a user enters an unknown command" do 
+      context "a user enters an unknown command" do 
 
-      it "responds and asks the user to re-enter their command" do 
-        (Text).should_receive(:unknown)
-        post :input, { :From => user.phone_number, :Body => "Apple Orange!!"}
+        it "responds and asks the user to re-enter their command" do 
+          (Text).any_instance.should_receive(:unknown)
+          post :input, { :From => user.phone_number, :Body => "Apple Orange!!"}
+        end
       end
     end
   end

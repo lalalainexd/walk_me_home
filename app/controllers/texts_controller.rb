@@ -1,28 +1,28 @@
 class TextsController < ApplicationController
 
-  # Takes in User input and passes it along to the necessary actions
   def input
 
     phone_number = params[:From]
     message = Message.construct(params[:Body])
+    text = Text.construct(phone_number)
 
-    return Text.register(phone_number) if user(phone_number).nil?
+    return text.register if user(phone_number).nil?
     
     case 
     when message.starting_trip? == true
-      Text.start(phone_number)
+      text.start
       # post (message.duration, user.id) to create a trip
     when message.cancel_trip? == true
-      Text.cancel(phone_number)
+      text.cancel
       # post to cancel the trip, include user.id
     when message.home_safely? == true
-      Text.final(phone_number)
+      text.final
       #post to home safely, user.id
     when message.extend_trip? == true
-      Text.extend_trip(phone_number, message.duration )
+      text.extend_trip(message.duration )
       #post to extend trip (message.duration, user.id) to extend the trip
     else
-      Text.unknown(phone_number)
+      text.unknown
     end
   end
 
