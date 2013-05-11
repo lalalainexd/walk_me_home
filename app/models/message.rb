@@ -18,9 +18,13 @@ class Message
     self.content.scan(/\d/).join("")
   end
 
+  def cancel_trip?
+    return true if words.include?("Cancel")
+  end
+
+  private
+
   def words
     self.content.split(" ")
   end
-
-
 end 

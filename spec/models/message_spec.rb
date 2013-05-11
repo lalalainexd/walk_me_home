@@ -34,4 +34,25 @@ describe Message do
       end
     end
   end
+
+  describe ".cancel_trip?" do 
+
+    context "given the message includes the word cancel" do
+
+      let(:message) { Message.construct("Cancel current trip")}
+
+      it "returns true" do 
+        expect(message.cancel_trip?).to be_true
+      end 
+    end
+
+    context "given the message does not include the word cancel" do 
+
+      let(:message){ Message.construct("Lots of words words words") }
+
+      it "returns false" do 
+        expect(message.cancel_trip?).to be_false
+      end
+    end
+  end
 end 
