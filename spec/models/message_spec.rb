@@ -39,7 +39,7 @@ describe Message do
 
     context "given the message includes the word cancel" do
 
-      let(:message) { Message.construct("Cancel current trip")}
+      let(:message) { Message.construct("cancel current trip")}
 
       it "returns true" do 
         expect(message.cancel_trip?).to be_true

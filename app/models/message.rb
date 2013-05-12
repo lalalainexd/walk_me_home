@@ -11,7 +11,7 @@ class Message
   end
 
   def starting_trip?
-    words.include?("Start")
+    words.include?("start")
   end
 
   def duration
@@ -19,20 +19,20 @@ class Message
   end
 
   def cancel_trip?
-    words.include?("Cancel")
+    words.include?("cancel")
   end
 
   def home_safely?
-    words.include?("Yes")
+    words.include?("yes")
   end
 
   def extend_trip?
-    words.include?("Extend")
+    words.include?("extend")
   end
 
   private
 
   def words
-    self.content.split(" ")
+    self.content.split(" ").collect { |word| word.downcase }
   end
 end 
