@@ -32,4 +32,42 @@ describe Trek do
       end
     end
   end
+
+  describe "pending_end?" do
+    context "treks is not over but time is up" do
+      it "should be pending end" do
+        trek = Trek.new
+        trek.expected_end_at = Time.now - 10000
+        trek.started_at = Time.now - 2000
+        expect(trek).to be_pending_end
+      end
+    end
+
+    context "trek is in progress" do
+      it "should not be pending end" do
+        trek = Trek.new
+        trek.expected_end_at = Time.now + 10000000
+        trek.started_at = Time.now - 2000
+        expect(trek).to_not be_pending_end
+      end
+    end
+
+    context "trek is over" do
+      it "should not be pending end" do
+        trek = Trek.new
+        trek.over = true
+        expect(trek).to_not be_pending_end
+      end
+    end
+  end
+
+  describe "stop" do
+    it "to be over" do
+      trek = Trek.new
+      trek.expected_end_at = Time.now
+      trek.started_at = Time.now
+      trek.stop
+      expect(trek).to be_over
+    end
+  end
 end

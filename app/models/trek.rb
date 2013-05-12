@@ -1,6 +1,7 @@
 class Trek < ActiveRecord::Base
   attr_accessible :started_at, :expected_end_at
   belongs_to :trip
+  validates_presence_of :expected_end_at, :started_at
   validate :expected_end_at_is_after_started_at
 
   def start duration
@@ -10,6 +11,19 @@ class Trek < ActiveRecord::Base
       trek.expected_end_at = time + duration
       save
     end
+  end
+
+  def stop
+    self.over = true
+    save
+  end
+
+  def pending_end?
+    !over? && !in_progress?
+  end
+
+  def in_progress?
+    Time.now < expected_end_at
   end
 
   private
