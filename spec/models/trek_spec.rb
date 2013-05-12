@@ -70,4 +70,15 @@ describe Trek do
       expect(trek).to be_over
     end
   end
+
+  describe "extend" do
+    it "extends a trip" do
+
+      trek = Trek.new
+      trek.start(1000)
+      original_end = trek.expected_end_at
+      trek.extend_time(2000)
+      expect(trek.expected_end_at).to eq (original_end+2000)
+    end
+  end
 end

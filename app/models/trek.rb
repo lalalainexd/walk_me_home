@@ -26,6 +26,12 @@ class Trek < ActiveRecord::Base
     Time.now < expected_end_at
   end
 
+  def extend_time extra_time
+    self.expected_end_at += extra_time
+    save
+    self.expected_end_at
+  end
+
   private
 
   def expected_end_at_is_after_started_at
