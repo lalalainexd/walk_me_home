@@ -1,6 +1,7 @@
 class Trek < ActiveRecord::Base
   attr_accessible :started_at, :expected_end_at
   belongs_to :trip
+  has_one :user, through: :trip
   validates_presence_of :expected_end_at, :started_at
   validate :expected_end_at_is_after_started_at
 
@@ -23,7 +24,7 @@ class Trek < ActiveRecord::Base
   end
 
   def in_progress?
-    Time.now < expected_end_at
+    !over && Time.now < expected_end_at
   end
 
   def extend_time extra_time

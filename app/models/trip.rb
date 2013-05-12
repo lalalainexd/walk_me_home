@@ -11,9 +11,10 @@ class Trip < ActiveRecord::Base
     treks.build.start(duration || default_duration)
   end
 
+
   private
   def duration_is_greater_than_zero
-    if duration && duration <= 0
+    if default_duration && default_duration <= 0
       errors[:duration] = "Duration must be greater 0"
     end
   end

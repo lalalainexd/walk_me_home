@@ -12,13 +12,28 @@ class User < ActiveRecord::Base
 
   has_many :emergency_contacts
   has_many :trips
+  has_many :treks, through: :trips
 
   def username=(val)
     write_attribute(:email, val.downcase)
   end
 
+
   def start_trip duration
     trip = trips.create(default_duration: duration)
     trip.start
+  end
+
+  def extend_current_trip extra_time
+    current_trek.extend_time(extra_time) if current_trek
+  end
+
+  def stop_current_trip
+    current_trek.stop if current_trek
+  end
+
+  def current_trek
+    treks.find{|t| t.in_progress? || t.pending_end?}
+
   end
 end
