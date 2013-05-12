@@ -27,8 +27,10 @@ class Trek < ActiveRecord::Base
   end
 
   def extend_time extra_time
-    self.expected_end_at += extra_time
-    save
+    if extra_time >= 0
+      self.expected_end_at += extra_time
+      save
+    end
     self.expected_end_at
   end
 

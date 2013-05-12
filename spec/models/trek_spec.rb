@@ -72,13 +72,24 @@ describe Trek do
   end
 
   describe "extend" do
-    it "extends a trip" do
+    context "valid extended time" do
+      it "extends a trip" do
+        trek = Trek.new
+        trek.start(1000)
+        original_end = trek.expected_end_at
+        trek.extend_time(2000)
+        expect(trek.expected_end_at).to eq (original_end+2000)
+      end
+    end
 
-      trek = Trek.new
-      trek.start(1000)
-      original_end = trek.expected_end_at
-      trek.extend_time(2000)
-      expect(trek.expected_end_at).to eq (original_end+2000)
+    context "invalid extended time" do
+      it "doesnt extend a trip" do
+        trek = Trek.new
+        trek.start(1000)
+        original_end = trek.expected_end_at
+        trek.extend_time(-2000)
+        expect(trek.expected_end_at).to eq (original_end)
+      end
     end
   end
 end
