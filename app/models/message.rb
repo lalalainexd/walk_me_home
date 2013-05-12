@@ -1,9 +1,9 @@
-class Message 
+class Message
 
   attr_reader :content
 
   def initialize(content)
-    @content = content 
+    @content = content
   end
 
   def self.construct(content)
@@ -15,7 +15,7 @@ class Message
   end
 
   def duration
-    self.content.scan(/\d/).join("")
+    self.content.scan(/\d/).join("").to_i * 60
   end
 
   def cancel_trip?
@@ -35,4 +35,4 @@ class Message
   def words
     self.content.split(" ").collect { |word| word.downcase }
   end
-end 
+end

@@ -1,5 +1,7 @@
 class TextsController < ApplicationController
 
+  before_filter :user, only: :input
+
   def input
 
     phone_number = params[:From]
@@ -7,28 +9,29 @@ class TextsController < ApplicationController
     text = Text.construct(phone_number)
 
     return text.register if user(phone_number).nil?
-    
-    case 
+
+    case
     when message.starting_trip? == true
       text.start
-      # post (message.duration, user.id) to create a trip
+      user.start_trip(message.duration)
+
     when message.cancel_trip? == true
       text.cancel
-      # post to cancel the trip, include user.id
+      user.stop_current_trip
     when message.home_safely? == true
       text.final
-      #post to home safely, user.id
+      user.stop_current_trip
     when message.extend_trip? == true
       text.extend_trip(message.duration )
-      #post to extend trip (message.duration, user.id) to extend the trip
+      user.extend_current_trip(message.duration)
     else
       text.unknown
     end
   end
 
-  private 
+  private
 
-  def user(phone_number)
-    User.find_by_phone_number(phone_number)
+  def user(phone_number=params[:phone_number])
+    @user ||= User.find_by_phone_number(phone_number)
   end
-end 
+end
