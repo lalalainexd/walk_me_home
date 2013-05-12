@@ -1,6 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
+
+gem 'sqlite3'
+gem 'twilio-ruby'
+gem 'haml-rails'
+gem "figaro"
 gem 'sqlite3'
 gem 'twilio-ruby'
 gem 'haml-rails'
@@ -20,6 +25,7 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rr'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'unicorn'

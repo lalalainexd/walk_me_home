@@ -5,6 +5,8 @@ WalkMeHome::Application.routes.draw do
 
   get "sessions/new"
 
+  post '/input' => 'texts#input'
+
   root to: 'texts#index'
   get 'logout' => 'sessions#destroy', :as => 'logout'
   get 'login' => 'sessions#new', :as => 'login'
