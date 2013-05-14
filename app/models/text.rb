@@ -96,6 +96,6 @@ class Text
   end
 
   def alert_emergency_contact(user_name)
-    "Your friend #{user_name} has not confirmed they have arrived home"
+    "Your friend #{user_name} has not confirmed they have arrived home. Perhaps you should check in with them?"
   end
 end 

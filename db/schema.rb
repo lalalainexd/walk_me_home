@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511234811) do
+ActiveRecord::Schema.define(:version => 20130514033212) do
 
   create_table "emergency_contacts", :force => true do |t|
     t.integer  "user_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130511234811) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.boolean  "over",            :default => false
+    t.integer  "count",           :default => 0
   end
 
   add_index "treks", ["trip_id"], :name => "index_treks_on_trip_id"
