@@ -4,6 +4,7 @@ class TextsController < ApplicationController
 
   def input
 
+    puts "received!"
     phone_number = params[:From]
     message = Message.construct(params[:Body])
     text = Text.construct(phone_number)

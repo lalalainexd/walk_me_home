@@ -13,7 +13,7 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'sorcery'
 gem 'redcarpet'
-gem 'resque'
+gem 'resque-scheduler', require: 'resque_scheduler'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

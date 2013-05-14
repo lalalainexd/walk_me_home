@@ -1,0 +1,5 @@
+every_second:
+  every: ["30s"]
+  class: EndedTreksFinder
+  queue: ended_trek_finder_queue
+  description: Finds treks that should be over every 30 sec

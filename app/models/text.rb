@@ -92,7 +92,7 @@ class Text
   end
 
   def extend_trip_message(number)
-    "Thanks! Your trip has been extended by #{number} minutes"
+    "Thanks! Your trip has been extended by #{number/60} minutes"
   end
 
   def alert_emergency_contact(user_name)
