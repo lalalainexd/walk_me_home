@@ -1,0 +1,20 @@
+.row
+  .span3
+    = simple_form_for @user do |f|
+      - if @user.errors.any?
+        .error_messages
+          %h2 Form is invalid
+          %ul
+            - for message in @user.errors.full_messages
+              %li= message
+      = f.label 'Full Name:'
+      = f.text_field :full_name
+      = f.label 'Email Address:'
+      = f.text_field :email
+      = f.label 'Cell Phone Number:'
+      = f.text_field :phone_number
+      = f.label 'Password:'
+      = f.password_field :password
+      = f.label 'Confirm Password:'
+      = f.password_field :password_confirmation
+      = f.button :submit, value: 'Submit'
